@@ -1,12 +1,22 @@
+import os
+import ssl
+import dotenv
 import streamlit as st
 import google.generativeai as genai
-import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from rag_engine import buscar_contexto_relevante
 from prompts import carregar_system_prompt, formatar_prompt_final
 
-# 1. Carregar variáveis de ambiente
-load_dotenv()
+# === BYPASS DE SSL (Apenas para ambiente de desenvolvimento/estudo) ===
+ssl._create_default_https_context = ssl._create_unverified_context
+os.environ['PYTHONHTTPSVERIFY'] = '0'
+os.environ['CURL_CA_BUNDLE'] = ''
+# ====================================================================
+
+# 1. Carregar variáveis de ambiente (arquivo .env)
+#load_dotenv()
+
+dotenv.load_dotenv()
 
 # Configuração da página Streamlit
 st.set_page_config(
