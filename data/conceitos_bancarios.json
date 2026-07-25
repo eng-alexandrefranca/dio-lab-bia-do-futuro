@@ -1,0 +1,17 @@
+[
+  {
+    "termo": "CDB",
+    "definicao": "Certificado de Depósito Bancário. Título privado emitido por instituições financeiras para captação de recursos, com prazos e rentabilidades (fixas ou atreladas ao CDI) combinados no momento da aplicação.",
+    "exemplo": "Rentabilidade de 100% do CDI com liquidez diária ou no vencimento."
+  },
+  {
+    "termo": "Tesouro Selic",
+    "definicao": "Título público pós-fixado do Tesouro Direto cuja rentabilidade segue a taxa básica de juros (Taxa Selic). É considerado um dos investimentos de menor risco no mercado financeiro.",
+    "exemplo": "Indicado para formação de reserva de emergência devido ao baixo risco e liquidez."
+  },
+  {
+    "termo": "Reserva de Emergência",
+    "definicao": "Montante financeiro reservado para cobrir despesas imprevistas ou períodos de instabilidade. Deve estar investido em aplicações de alta liquidez e baixo risco.",
+    "exemplo": "Equivalente a 3 a 6 meses do custo de vida do colaborador/cliente."
+  }
+]

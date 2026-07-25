@@ -1,0 +1,3 @@
+tema,regra_compliance,procedimento_seguranca
+Atualizacao Cadastral,Manter dados do cliente sempre atualizados e validados,Apenas o titular pode alterar e-mail ou telefone mediante validação por duplo fator (2FA) e confirmação de identidade.
+Problemas no App,Garantir a integridade do acesso do cliente ao extrato e dados bancários,Em caso de erros no visualizador de extrato encaminhar o cliente aos canais oficiais (chat/telefone) sem solicitar senhas.
