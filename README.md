@@ -19,19 +19,26 @@ O Edu é um educador financeiro que **ensina**, não recomenda. Ele explica conc
 
 ## 🏗️ Arquitetura
 
+### Diagrama
+
 ```mermaid
 flowchart TD
-    A[Usuário] --> B[Streamlit]
-    B --> C[Ollama - LLM Local]
-    C --> D[Base de Conhecimento]
+    A[Novo Colaborador] --> B["Interface (Streamlit)"]
+    B --> C["LLM (Temp = 0.0)"]
+    C --> D["Base de Conhecimento (.JSON / .CSV)"]
     D --> C
-    C --> E[Resposta Educativa]
+    C --> E["Filtro Anti-Alucinação"]
+    E --> F["Resposta + Checagem Proativa"]
+
 ```
 
-**Stack:**
-- Interface: Streamlit
-- LLM: Ollama (modelo local `gpt-oss`)
-- Dados: JSON/CSV mockados
+### Componentes
+
+| Componente | Descrição |
+|------------|-----------|
+| Interface | [Streamlit](https://streamlit.io/) |
+| LLM | Gemini |
+| Base de Conhecimento | JSON/CSV mockados na pasta `data` |
 
 ## 📁 Estrutura do Projeto
 
@@ -49,8 +56,10 @@ flowchart TD
 │   ├── 04-metricas.md             # Avaliação de qualidade
 │   └── 05-pitch.md                # Apresentação do projeto
 │
-└── src/
-    └── app.py                     # Aplicação Streamlit
+├── src/
+│    └── app.py                     # Aplicação Streamlit
+├── tests/
+│   └── test_bankon.py              # Arquivo de testes automatizados
 ```
 
 ## 🚀 Como Executar
@@ -100,4 +109,4 @@ streamlit run src/app.py
 
 ## 📝 Documentação Completa
 
-Toda a documentação técnica, estratégias de prompt e casos de teste estão disponíveis na pasta [`docs/`](./docs/).
+Toda a documentação técnica, estratégias de prompt e casos de testes manuais estão disponíveis na pasta [`docs/`](./docs/).
