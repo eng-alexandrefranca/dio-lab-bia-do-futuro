@@ -1,68 +1,153 @@
-import json
-import pandas as pd
-import requests
 import streamlit as st
+import google.generativeai as genai
+import os
+import io
+from dotenv import load_dotenv
+from gtts import gTTS
+from rag_engine import buscar_contexto_relevante
+from prompts import carregar_system_prompt, formatar_prompt_final
 
-# ============ CONFIGURAÇÃO ============
-OLLAMA_URL = "http://localhost:11434/api/generate"
-MODELO = "gpt-oss"
+# 1. Carregar variáveis do arquivo .env automaticamente
+load_dotenv()
 
-# ============ CARREGAR DADOS ============
-perfil = json.load(open('./data/perfil_investidor.json'))
-transacoes = pd.read_csv('./data/transacoes.csv')
-historico = pd.read_csv('./data/historico_atendimento.csv')
-produtos = json.load(open('./data/produtos_financeiros.json'))
+# Configuração da página Streamlit
+st.set_page_config(page_title="Guia de Acessibilidade", page_icon="♿", layout="centered")
 
-# ============ MONTAR CONTEXTO ============
-contexto = f"""
-CLIENTE: {perfil['nome']}, {perfil['idade']} anos, perfil {perfil['perfil_investidor']}
-OBJETIVO: {perfil['objetivo_principal']}
-PATRIMÔNIO: R$ {perfil['patrimonio_total']} | RESERVA: R$ {perfil['reserva_emergencia_atual']}
+st.title("♿ Guia de Acessibilidade")
+st.caption("Pré-atendimento empático por Texto e Voz, com direcionamento especializado.")
 
-TRANSAÇÕES RECENTES:
-{transacoes.to_string(index=False)}
+# Configurar API Key
+API_KEY = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY", "")
 
-ATENDIMENTOS ANTERIORES:
-{historico.to_string(index=False)}
+if not API_KEY:
+    st.warning("⚠️ Variável GEMINI_API_KEY ou GOOGLE_API_KEY não configurada no arquivo .env.")
 
-PRODUTOS DISPONÍVEIS:
-{json.dumps(produtos, indent=2, ensure_ascii=False)}
-"""
+genai.configure(api_key=API_KEY)
 
-# ============ SYSTEM PROMPT ============
-SYSTEM_PROMPT = """Você é o Edu, um educador financeiro amigável e didático.
+# Função para obter um modelo válido com suporte a fallback
+def criar_modelo_gemini():
+    # Lista de nomes de modelos suportados pela API gratuita
+    modelos_para_testar = [
+        'gemini-3.6-flash',
+        'gemini-3.6-flash-latest',
+        'gemini-3.6-flash',
+        'models/gemini-3.6-flash',
+        'gemini-2.0-flash'
+    ]
+    
+    for nome_modelo in modelos_para_testar:
+        try:
+            model = genai.GenerativeModel(nome_modelo)
+            return model
+        except Exception:
+            continue
+            
+    return genai.GenerativeModel('gemini-3.6-flash')
 
-OBJETIVO:
-Ensinar conceitos de finanças pessoais de forma simples, usando os dados do cliente como exemplos práticos.
+# Função para converter texto da resposta em áudio (Text-to-Speech)
+def gerar_audio_resposta(texto: str) -> bytes:
+    try:
+        tts = gTTS(text=texto, lang='pt', slow=False)
+        fp = io.BytesIO()
+        tts.write_to_fp(fp)
+        fp.seek(0)
+        return fp.read()
+    except Exception as e:
+        print(f"Erro ao gerar áudio TTS: {e}")
+        return None
 
-REGRAS:
-- NUNCA recomende investimentos específicos, apenas explique como funcionam;
-- JAMAIS responda a perguntas fora do tema ensino de finanças pessoais. 
-  Quando ocorrer, responda lembrando o seu papel de educador financeiro;
-- Use os dados fornecidos para dar exemplos personalizados;
-- Linguagem simples, como se explicasse para um amigo;
-- Se não souber algo, admita: "Não tenho essa informação, mas posso explicar...";
-- Sempre pergunte se o cliente entendeu;
-- Responda de forma sucinta e direta, com no máximo 3 parágrafos.
-"""
+# Inicializar Histórico do Chat
+if "messages" not in st.session_state:
+    st.session_state.messages = [
+        {"role": "assistant", "content": "Olá. Sou o Guia de Acessibilidade. Como posso te ajudar hoje?"}
+    ]
 
-# ============ CHAMAR OLLAMA ============
-def perguntar(msg):
-    prompt = f"""
-    {SYSTEM_PROMPT}
+# Carregar Prompt de Sistema
+system_prompt = carregar_system_prompt()
 
-    CONTEXTO DO CLIENTE:
-    {contexto}
+# Gravação por Voz NATIVA do Streamlit
+audio_gravado = st.audio_input("🎙️ Enviar mensagem por Voz (Microfone):")
 
-    Pergunta: {msg}"""
+# Exibir histórico de mensagens anteriores
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.write(message["content"])
+        if "audio" in message and message["audio"]:
+            st.audio(message["audio"], format="audio/mp3")
 
-    r = requests.post(OLLAMA_URL, json={"model": MODELO, "prompt": prompt, "stream": False})
-    return r.json()['response']
+user_input = None
+audio_bytes = None
 
-# ============ INTERFACE ============
-st.title("🎓 Edu, o Educador Financeiro")
+# Capturar gravação nativa do Streamlit
+if audio_gravado:
+    audio_bytes = audio_gravado.read()
+    user_input = "Mensagem de voz enviada pelo usuário."
 
-if pergunta := st.chat_input("Sua dúvida sobre finanças..."):
-    st.chat_message("user").write(pergunta)
-    with st.spinner("..."):
-        st.chat_message("assistant").write(perguntar(pergunta))
+# Capturar mensagem de texto se o usuário digitar
+text_input = st.chat_input("Ou digite sua dúvida por texto...")
+if text_input:
+    user_input = text_input
+    audio_bytes = None
+
+# Processamento da Mensagem
+if user_input:
+    st.session_state.messages.append({"role": "user", "content": user_input})
+    with st.chat_message("user"):
+        st.write(user_input)
+
+    # 1. Recuperar contexto da base de conhecimento (RAG)
+    contexto = buscar_contexto_relevante(user_input)
+
+    # 2. Formatar histórico recente
+    historico_texto = ""
+    for msg in st.session_state.messages[-6:]:
+        historico_texto += f"{msg['role']}: {msg['content']}\n"
+
+    # 3. Montar prompt completo
+    prompt_completo = formatar_prompt_final(system_prompt, contexto, historico_texto, user_input)
+
+    # 4. Gerar Resposta via Gemini API com Fallback
+    with st.chat_message("assistant"):
+        try:
+            # Tenta instanciar o modelo disponível na sua conta
+            model = None
+            nomes_modelos = ['gemini-3.6-flash', 'gemini-3.6-flash-latest', 'gemini-3.6-flash', 'models/gemini-3.6-flash']
+            
+            response = None
+            for nome_modelo in nomes_modelos:
+                try:
+                    m = genai.GenerativeModel(nome_modelo)
+                    if audio_bytes:
+                        conteudo_gemini = [
+                            prompt_completo,
+                            {"mime_type": "audio/wav", "data": audio_bytes}
+                        ]
+                        response = m.generate_content(conteudo_gemini)
+                    else:
+                        response = m.generate_content(prompt_completo)
+                    if response:
+                        break
+                except Exception:
+                    continue
+
+            if not response:
+                # Tentativa de fallback padrão
+                m = genai.GenerativeModel('gemini-3.6-flash')
+                response = m.generate_content(prompt_completo)
+
+            bot_reply = response.text
+            st.write(bot_reply)
+
+            # Gerar sintese de voz (áudio) da resposta
+            bot_audio = gerar_audio_resposta(bot_reply)
+            if bot_audio:
+                st.audio(bot_audio, format="audio/mp3", autoplay=True)
+
+            st.session_state.messages.append({
+                "role": "assistant", 
+                "content": bot_reply,
+                "audio": bot_audio
+            })
+        except Exception as e:
+            st.error("Erro ao processar mensagem. Verifique a chave de API no arquivo .env.")
+            st.caption(f"Detalhes: {e}")
