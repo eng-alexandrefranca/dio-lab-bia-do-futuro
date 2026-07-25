@@ -1,6 +1,12 @@
-# 🎬 Vídeo 1: Introdução ao Desafio
+# 🎬 Roteiros das Videoaulas do Desafio (Referência Técnica)
 
-```
+> **Nota de Contexto:** Este arquivo contém os roteiros e diretrizes originais do desafio da DIO/Bradesco sobre criação de Agentes Financeiros Inteligentes. No **BankOn**, adaptamos estes conceitos do escopo de finanças pessoais para o ecossistema de **Onboarding Bancário, Treinamento de Novos Colaboradores, RAG Local e Compliance**.
+
+---
+
+## 🎬 Vídeo 1: Introdução ao Desafio
+
+```text
 Fala, pessoal! Eu sou o Venilton, Tech Lead no time de Educação da DIO, e hoje vou apresentar pra vocês um desafio muito especial: criar um Agente Financeiro Inteligente usando IA Generativa.
 
 Antes de entrar nos detalhes, deixa eu contextualizar.
@@ -23,7 +29,7 @@ Nos próximos vídeos, vou detalhar cada uma dessas etapas. E o mais importante:
 
 Mas quero deixar uma coisa bem clara: os exemplos são referências, não receitas prontas.
 Independente de você estar em transição de carreira ou já ser especialista em tecnologia, o mais importante é dar a SUA cara ao desafio.
-Use sua criatividade, explore suas ideias, e se permita ter essa experiência.
+Use sua criatividade, explore suas ideias, e se permitir ter essa experiência.
 
 Bora começar?
 ```
@@ -252,6 +258,5 @@ Na pasta "examples" do repositório você encontra tudo que fizemos juntos. Use 
 Agora é com vocês. Mãos à obra e bora criar esse agente!
 Qualquer dúvida, nos vemos no fórum.
 Valeu e bons estudos!
-
 ```
 
