@@ -35,8 +35,14 @@ def obter_modelo_gemini():
     """Retorna o modelo Gemini instanciado utilizando APENAS versões da camada gratuita."""
     # Lista priorizada apenas com modelos com suporte no Free Tier
     modelos_gratuitos = [
+    	'gemini-flash-latest',
+    	'gemini-3.5-flash',
+    	'gemini-3.5-flash-latest',
+    	'models/gemini-3.5-flash',
+    	'gemini-3.1-flash',
         'gemini-2.5-flash',
         'gemini-2.5-flash-lite',
+        'gemini-2.0-flash',
         'gemini-1.5-flash'
     ]
     
