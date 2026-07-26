@@ -32,3 +32,7 @@ ENV/
 # Vectorstore Local (evitar subir banco gerado localmente)
 vectorstore/*
 !vectorstore/.gitkeep
+
+# Evidência de Testes Manuais
+tests/testes-manuais/apresentacao-testes.pptx
+tests/testes-manuais/resumo-executivo-audio.m4a

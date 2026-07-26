@@ -91,6 +91,10 @@ flowchart TD
 │
 ├── tests/                           # Suíte de testes automatizados
 │   └── test_bankon.py               # Testes das regras de negócio e fallbacks
+│   └── testes-manuais/
+│       ├── relatorio-testes-v1.pdf      # O relatório completo dos testes manuais
+│       ├── apresentacao-testes.pptx     # A apresentação gerada pelo NotebookLM
+│       └── resumo-executivo-audio.mp3   # O áudio gerado pelo NotebookLM
 │
 ├── .env.example                     # Modelo para variáveis de ambiente
 ├── requirements.txt                 # Dependências do projeto Python
