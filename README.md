@@ -13,6 +13,17 @@ Este repositório foi desenvolvido para o desafio de projeto **"Construa Seu Ass
 
 > Agente de IA Generativa especializado no nivelamento técnico, treinamentos conceituais e guias de compliance para novos colaboradores do setor bancário, equipado com arquitetura RAG e proteção anti-alucinação.
 
+## Tela Principal
+
+![Interface do BankOn](./assets/Screenshot_tela-principal-telapreta.png)
+
+
+## Mensagem de Boas-Vindas
+
+![Interface do BankOn](./assets/Screenshot_boas-vindas-parte01.png)
+
+![Interface do BankOn](./assets/Screenshot_boas-vindas-parte02.png)
+
 ## 💡 O Que é o BankOn?
 
 O **BankOn** é um assistente virtual interativo projetado para acelerar o processo de onboarding de novos funcionários em instituições financeiras. Ele elimina discrepâncias no nível de conhecimento sobre produtos bancários, conceitos de mercado e protocolos de cibersegurança e compliance.
@@ -185,12 +196,9 @@ Execute o Streamlit através do módulo Python para garantir o carregamento corr
 
 Toda a documentação técnica, estratégias de prompt e casos de testes manuais estão disponíveis na pasta [`docs/`](./docs/).
 
+## 📝 Documentação Ilustrativa
 
-## 📝 Documentação Detalhada
-
-Para acessar os detalhes de arquitetura, estratégia de prompts e pitch, consulte a pasta [`docs/`](./docs/).
-
-![Interface do BankOn](./assets/screenshot-chat.png)
+Para acessar os detalhes das imagens e pitch, consulte a pasta [`./assets/`](./assets/).
 
 
 > 💡 **Nota para Mantenedores:** Para adicionar novas imagens ou screenshots ao `README.md`, salve os arquivos na pasta `assets/` e utilize o caminho relativo:

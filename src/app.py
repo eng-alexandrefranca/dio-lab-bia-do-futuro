@@ -6,8 +6,8 @@ import requests
 import dotenv
 import streamlit as st
 
-from rag_engine import buscar_contexto_relevante
-from prompts import carregar_system_prompt, formatar_prompt_final
+from src.rag_engine import buscar_contexto_relevante
+from src.prompts import carregar_system_prompt, formatar_prompt_final
 
 # ==============================================================================
 # 1. CONFIGURAÇÕES ANTI-BLOQUEIO SSL & PROXY (Ambiente Corporativo/Dev)
@@ -160,3 +160,17 @@ if text_input:
             except Exception as e:
                 st.error("Erro ao comunicar com o BankOn. Verifique sua chave de API ou conexão.")
                 st.caption(f"Detalhes técnicos: {e}")
+
+# ==============================================================================
+# 5. FUNÇÃO PARA OS TESTES AUTOMATIZADOS
+# ==============================================================================
+
+def responder_pergunta(pergunta: str) -> str:
+    """
+    Função utilitária consumida pelos testes automatizados (pytest)
+    e pelo fluxo da interface Streamlit.
+    """
+    system_prompt = carregar_system_prompt()
+    contexto = buscar_contexto_relevante(pergunta)
+    prompt_completo = formatar_prompt_final(system_prompt, contexto, "", pergunta)
+    return chamar_gemini_rest(prompt_completo)

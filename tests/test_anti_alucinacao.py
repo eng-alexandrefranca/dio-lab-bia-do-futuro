@@ -1,8 +1,13 @@
 import pytest
-# Supondo que em src/app.py você tenha uma função que recebe a Pergunta e retorna a Resposta
+import sys
+import os
+
+# Adiciona o diretório 'src' ao PATH para o pytest conseguir importar src.app sem erros
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from src.app import responder_pergunta 
 
-# String exata exigida na Diretriz 3 do Prompt
+# String exata exigida na Diretriz 3 do Prompt do BankOn
 MENSAGEM_RECUSA_ESPERADA = (
     "Esse termo ou produto não consta no nosso guia de nivelamento básico de onboarding. "
     "Por favor, consulte o portal de treinamentos da sua área, pergunte seu tutor profissional "
