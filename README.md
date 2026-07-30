@@ -196,6 +196,7 @@ Execute o Streamlit através do módulo Python para garantir o carregamento corr
 
 - **Arquitetura Pronta para Produção:** Código organizado com separação clara de responsabilidades, suíte de testes automatizados (`tests/`) e gerenciamento seguro de credenciais via `.env`.
 
+
 ## 📝 Documentação Completa
 
 Toda a documentação técnica, estratégias de prompt e casos de testes manuais estão disponíveis na pasta [`docs/`](./docs/).
@@ -209,3 +210,9 @@ Para acessar os detalhes das imagens e pitch, consulte a pasta [`./assets/`](./a
 > ```markdown
 > ![Interface do BankOn](./assets/screenshot-chat.png)
 > ```
+
+## 🔗 Link do Pitch
+
+> Vídeo da Apresentação:
+
+[Clique aqui para ir ao Pitch](./docs/05-pitch.md)

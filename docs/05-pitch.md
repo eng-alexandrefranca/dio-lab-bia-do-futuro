@@ -11,7 +11,7 @@
 |-------|-------|-------------------|
 | **0:00 - 0:30** | **Problema** | A dor operacional e o custo do onboarding no setor bancário |
 | **0:30 - 1:15** | **Solução** | Apresentação do BankOn, arquitetura RAG e Anti-Alucinação |
-| **1:15 - 2:15** | **Demonstração Prática** | Exibição da interface Streamlit e dos testes de estresse |
+| **1:15 - 2:15** | **Demonstração Prática** | Exibição da interface Streamlit em funcionamento |
 | **2:15 - 3:00** | **Diferenciais e Impacto** | Por que a solução é viável, segura e escalável |
 
 ---
@@ -19,15 +19,13 @@
 ## 🎙️ Roteiro de Fala (Script Sugerido)
 
 ### 🚨 1. O Problema (0:00 - 0:30)
-> *"No setor bancário, o onboarding de novos colaboradores é um desafio crítico. Funcionários de diferentes áreas chegam com lacunas sobre produtos do banco, conceitos do mercado e, principalmente, regras de compliance e cibersegurança.*  
-> *Interrupções constantes a gestores e tutores geram perda de produtividade. Pior do que isso: informações imprecisas prestadas a um cliente ou falhas de procedimento no atendimento podem gerar riscos regulatórios e operacionais graves para a instituição."*
-
+> *"O onboarding de novos colaboradores é um desafio. No setor bancário, funcionários de diferentes áreas chegam com lacunas sobre produtos do banco, conceitos do mercado, regras de compliance e cibersegurança.*  
 ---
 
 ### 💡 2. A Solução (0:30 - 1:15)
 > *"Para resolver essa dor, criamos o **BankOn**: um assistente virtual de onboarding e nivelamento técnico.*  
 > *O BankOn utiliza IA Generativa combinada com uma arquitetura de busca contextual (RAG Local) sobre os manuais internos de produtos e compliance do banco.*  
-> *Ele foi configurado com **temperatura zerada** e filtros rígidos: ele não inventa regras, não alucina e encerra toda resposta incentivando o aprendizado com uma pergunta de fixação de conhecimento."*
+> *Ele foi configurado com **temperatura zerada** e filtros: para não inventar regras, para não criar alucinações e encerrar todas respostas incentivando o aprendizado com uma pergunta de fixação e ampliação de conhecimento."*
 
 ---
 
@@ -55,10 +53,10 @@
 
 ## 📋 Checklist de Gravação do Pitch
 
-- [ ] Duração total controlada em até 3 minutos.
-- [ ] Microfone limpo e tela compartilhada em boa resolução.
-- [ ] Demonstração mostrando o teste de sucesso e o teste de recusa (anti-alucinação).
-- [ ] Exibição breve da arquitetura / repositório no GitHub.
+- [ X ] Duração total controlada em até 3 minutos.
+- [ X ] Microfone limpo e tela compartilhada em boa resolução.
+- [ X ] Demonstração mostrando o teste de sucesso e o teste de recusa (anti-alucinação).
+- [ X ] Exibição breve da arquitetura / repositório no GitHub.
 
 ---
 
@@ -66,4 +64,4 @@
 
 > Cole abaixo o link do vídeo gravado (YouTube, Loom, Google Drive, Vimeo, etc.):
 
-[Clique aqui para assistir ao vídeo do Pitch](https://link-do-seu-video-aqui)
+[Clique aqui para assistir ao vídeo do Pitch](https://youtu.be/PNXid87JcyM)

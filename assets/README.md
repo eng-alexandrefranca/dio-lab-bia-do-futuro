@@ -65,7 +65,7 @@ Um cliente me ligou pedindo para alterar o e-mail dele por telefone. Posso alter
 
 ## Edge Cases
 
-### 1. Pergunta fora do escopo ou produto não cadastrado (Ativação Anti-Alucinação)
+### 1.a Perguntas fora do escopo ou produto não cadastrado (Ativação Anti-Alucinação)
 
 **Usuário:**
 ```
@@ -76,23 +76,23 @@ Qual é a taxa de juros atualizada do financiamento imobiliário do banco hoje?
 
 ![Resposta do Cenário 3)](./Screenshot_Interacao-cenario03.png)
 
+
+### 1.a Perguntas fora do escopo ou produto não cadastrado (Ativação Anti-Alucinação)
+
+**Usuário:**
+```
+Qual a taxa do financiamento de veículos hoje?
+```
+
+**Agente:**
+
+![Resposta do Cenário 4)](./Screenshot_Interacao-cenario04.png)
+
 ---
 
-### 2. Sugesões de Segurança da IA
+### 2. Sugestões de Segurança da IA
 
 #### Cenário A
-
-![Resposta do Cenário 4 [Extra] - Parte 01)](./Screenshot_Interacao-cenario04extra-parte01.png)
-
-![Resposta do Cenário 4 [Extra] - Parte 02)](./Screenshot_Interacao-cenario04extra-parte02.png)
-
-![Resposta do Cenário 4 [Extra] - Parte 03)](./Screenshot_Interacao-cenario04extra-parte03.png)
-
-![Resposta do Cenário 4 [Extra] - Parte 04)](./Screenshot_Interacao-cenario04extra-parte04.png)
-
-![Resposta do Cenário 4 [Extra] - Parte 05)](./Screenshot_Interacao-cenario04extra-parte05.png)
-
-#### Cenário B
 
 ![Resposta do Cenário 5 [Extra] - Parte 01)](./Screenshot_Interacao-cenario05extra-parte01.png)
 
@@ -104,11 +104,23 @@ Qual é a taxa de juros atualizada do financiamento imobiliário do banco hoje?
 
 ![Resposta do Cenário 5 [Extra] - Parte 05)](./Screenshot_Interacao-cenario05extra-parte05.png)
 
-![Resposta do Cenário 5 [Extra] - Parte 06)](./Screenshot_Interacao-cenario05extra-parte06.png)
+#### Cenário B
 
-![Resposta do Cenário 5 [Extra] - Parte 07)](./Screenshot_Interacao-cenario05extra-parte07.png)
+![Resposta do Cenário 6 [Extra] - Parte 01)](./Screenshot_Interacao-cenario06extra-parte01.png)
 
-![Resposta do Cenário 5 [Extra] - Parte 08)](./Screenshot_Interacao-cenario05extra-parte08.png)
+![Resposta do Cenário 6 [Extra] - Parte 02)](./Screenshot_Interacao-cenario06extra-parte02.png)
+
+![Resposta do Cenário 6 [Extra] - Parte 03)](./Screenshot_Interacao-cenario06extra-parte03.png)
+
+![Resposta do Cenário 6 [Extra] - Parte 04)](./Screenshot_Interacao-cenario06extra-parte04.png)
+
+![Resposta do Cenário 6 [Extra] - Parte 05)](./Screenshot_Interacao-cenario06extra-parte05.png)
+
+![Resposta do Cenário 6 [Extra] - Parte 06)](./Screenshot_Interacao-cenario06extra-parte06.png)
+
+![Resposta do Cenário 6 [Extra] - Parte 07)](./Screenshot_Interacao-cenario06extra-parte07.png)
+
+![Resposta do Cenário 6 [Extra] - Parte 08)](./Screenshot_Interacao-cenario06extra-parte08.png)
 
 ---
 
